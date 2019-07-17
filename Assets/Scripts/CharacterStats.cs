@@ -10,6 +10,7 @@ public class CharacterStats : MonoBehaviour
     public int health;
     public int damage;
 
+    //gittest
 
     #region VFX & SFX
     public void ShowDamage()
