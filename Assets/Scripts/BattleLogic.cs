@@ -20,7 +20,7 @@ public class BattleLogic : MonoBehaviour
     public WriteText ouputLog;
 
     //TODO Create more prefabs below, to represent more classes/monsters that may be spawned
-    public GameObject knight, mage, boar;
+    public GameObject Hspawn1, Hspawn2, Hspawn3, Mspawn1, Mspawn2, Mspawn3;
 
     
 
@@ -30,13 +30,14 @@ public class BattleLogic : MonoBehaviour
     private void Start()
     {
         //This will call the SpawnIn function when the game starts (currently does nothing)
+
         SpawnIn();
 
         //This will repeat the Attack function once every four seconds indefinitely
         InvokeRepeating("Attack", 4, 4);
 
         //An example of how to write a string to the screen"
-        ouputLog.OutputText("A " + monsters.myName + " approaches!");
+        ouputLog.OutputText("Oh no, " + monsters.myName +  " approaches!");
     }
 
     void SpawnIn()
@@ -52,9 +53,6 @@ public class BattleLogic : MonoBehaviour
         /* The following code serves as an example of combat, but it is far too simplistic and does not meet all
          * the requirements, you will need to modify this heavily based on the system you want to implement.
          */
-
-        CharacterStats attacker;
-        CharacterStats defender;
 
         int simpleRandomChance = Random.Range(0, 2);
         string log = null;
