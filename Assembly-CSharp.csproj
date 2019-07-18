@@ -62,11 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BaseStats.cs" />
     <Compile Include="Assets\Scripts\BattleLogic.cs" />
     <Compile Include="Assets\Scripts\CharacterStats.cs" />
-    <Compile Include="Assets\Scripts\KnightStats.cs" />
-    <Compile Include="Assets\Scripts\MageStats.cs" />
     <Compile Include="Assets\Scripts\randomiser.cs" />
     <Compile Include="Assets\Scripts\THE SACRED TEXTS\WriteText.cs" />
     <None Include="Assets\Audio\Fantasy Arcade RPG Freedom World Sounds - Free Package\assetexplain.txt" />

@@ -8,6 +8,8 @@ public class BattleLogic : MonoBehaviour
     public CharacterStats heroes;
     public CharacterStats monsters;
 
+    public List<CharacterStats> heroesList = new List<CharacterStats>();
+
     //TODO Use the follwing spawn points as a reference point for where to spawn heroes and monsters respectively
     public Transform[] spawnPoints = new Transform[6];
 
@@ -18,7 +20,9 @@ public class BattleLogic : MonoBehaviour
     public WriteText ouputLog;
 
     //TODO Create more prefabs below, to represent more classes/monsters that may be spawned
-    public GameObject knight, boar;
+    public GameObject knight, mage, boar;
+
+    
 
     //Basic SFX for game events
     public AudioClip hurt, atack;
@@ -37,7 +41,8 @@ public class BattleLogic : MonoBehaviour
 
     void SpawnIn()
     {
-        //TODO Write your code to spawn in the prefabs, you will need to use arrays/lists and loops to accomplish this. 
+        //TODO Write your code to spawn in the prefabs, you will need to use arrays/lists and loops to accomplish this.
+        //Instantiate();
     }
 
     void Attack()
@@ -47,6 +52,9 @@ public class BattleLogic : MonoBehaviour
         /* The following code serves as an example of combat, but it is far too simplistic and does not meet all
          * the requirements, you will need to modify this heavily based on the system you want to implement.
          */
+
+        CharacterStats attacker;
+        CharacterStats defender;
 
         int simpleRandomChance = Random.Range(0, 2);
         string log = null;
