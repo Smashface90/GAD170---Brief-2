@@ -7,8 +7,18 @@ public class CharacterStats : MonoBehaviour
     //TODO Expand on the stats contained below, make sure you have some that are class-specific.
     public string myName;
     public Sprite mySprite;
+   // public int health;
+   // public int damage;
+
+    [Header("Base Stats")]
+    public int Str;
+    public int Agi;
+    public int Int;
+    [Header("Sub Stats")]
+    public int MaxHP;
     public int health;
     public int damage;
+    public int Def;
 
     //gittest
 

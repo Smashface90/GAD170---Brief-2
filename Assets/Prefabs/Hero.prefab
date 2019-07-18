@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6302445448657814288}
   - component: {fileID: 6302445448657814295}
   - component: {fileID: 4587007153357169972}
+  - component: {fileID: 225468853718130690}
   - component: {fileID: 494824127}
   m_Layer: 0
   m_Name: Hero
@@ -95,8 +96,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Knight
   mySprite: {fileID: 21300000, guid: 17df03b89e74d174dacc0c803626967f, type: 3}
+  playerLevel: 1
+  EXP: 0
+  Str: 0
+  Agi: 0
+  Int: 0
+  MaxHP: 0
   health: 10
   damage: 2
+  Def: 0
+--- !u!114 &225468853718130690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302445448657814289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1488c468f6dfb40b5a0698d5878375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &494824127
 AudioSource:
   m_ObjectHideFlags: 0
