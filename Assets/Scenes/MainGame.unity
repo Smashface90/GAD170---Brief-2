@@ -638,16 +638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a0f47f8bf25544da02e959e23c623c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character1_Row1: {fileID: 1283253393}
-  character2_Row1: {fileID: 0}
-  character3_Row1: {fileID: 0}
-  character1_Row2: {fileID: 0}
-  character2_Row2: {fileID: 0}
-  character3_Row2: {fileID: 0}
-  character1_Row3: {fileID: 0}
-  character2_Row3: {fileID: 0}
-  character3_Row3: {fileID: 0}
-  base_Stats: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1165,7 +1155,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4200f4ad7b88a5e44bc427c1ee6c0b51, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b9c873be358337c4989f79534403389d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1306,12 +1296,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6302445448657814288, guid: b3fbf537a4792b64ba2a07f1b1108eae,
     type: 3}
   m_PrefabInstance: {fileID: 675834254}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1283253393 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6302445448657814289, guid: b3fbf537a4792b64ba2a07f1b1108eae,
-    type: 3}
-  m_PrefabInstance: {fileID: 363240328}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1283253396 stripped
 Transform:
