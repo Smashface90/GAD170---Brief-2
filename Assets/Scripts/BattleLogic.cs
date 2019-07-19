@@ -5,10 +5,8 @@ using UnityEngine;
 public class BattleLogic : MonoBehaviour
 {
     //TODO Change the following variables to arrays or lists
-    public CharacterStats heroes;
+    public List<CharacterStats> heroes = new List<CharacterStats>();
     public CharacterStats monsters;
-
-    public List<CharacterStats> heroesList = new List<CharacterStats>();
 
     //TODO Use the follwing spawn points as a reference point for where to spawn heroes and monsters respectively
     public Transform[] spawnPoints = new Transform[6];
@@ -20,7 +18,8 @@ public class BattleLogic : MonoBehaviour
     public WriteText ouputLog;
 
     //TODO Create more prefabs below, to represent more classes/monsters that may be spawned
-    public GameObject Hspawn1, Hspawn2, Hspawn3, Mspawn1, Mspawn2, Mspawn3;
+    public GameObject[] heroPrefabs;
+    public GameObject[] monsterPrefabs;
 
     
 
@@ -44,6 +43,20 @@ public class BattleLogic : MonoBehaviour
     {
         //TODO Write your code to spawn in the prefabs, you will need to use arrays/lists and loops to accomplish this.
         //Instantiate();
+
+
+        //spawn 1 hero
+        GameObject g = (GameObject)Instantiate(heroPrefabs[0], spawnPoints[0]);
+        heroes.Add( g.GetComponent<CharacterStats>());
+
+
+        //spawn more heros here
+
+
+        //-----
+
+
+
     }
 
     void Attack()
@@ -53,7 +66,7 @@ public class BattleLogic : MonoBehaviour
         /* The following code serves as an example of combat, but it is far too simplistic and does not meet all
          * the requirements, you will need to modify this heavily based on the system you want to implement.
          */
-
+         /*
         int simpleRandomChance = Random.Range(0, 2);
         string log = null;
 
@@ -99,6 +112,6 @@ public class BattleLogic : MonoBehaviour
         }
 
         //Writes the assigned string to the screen
-        ouputLog.OutputText(log);
+        ouputLog.OutputText(log);*/
     }
 }
