@@ -1,31 +1,28 @@
-﻿using System.Collections;
+﻿// Evan Waters 1017144
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleLogic : MonoBehaviour
 {
-    //TODO Change the following variables to arrays or lists
+    // "heroes" and "monsters" lists are where the chosen characters spawn in
+    // "heroPrefab" and monsterPrefab" lists are where the characters are held
+
     public List<CharacterStats> heroes = new List<CharacterStats>();
-    public CharacterStats monsters;
+    public List<CharacterStats> monsters = new List<CharacterStats>();
 
-    //TODO Use the follwing spawn points as a reference point for where to spawn heroes and monsters respectively
-    public Transform[] spawnPoints = new Transform[6];
+    public List<GameObject> heroPrefab = new List<GameObject>();
+    public List<GameObject> monsterPrefab = new List<GameObject>();
 
-    /* To output any text to the screen, simply call the "Output Text" function on
-     * the script referenced below, and pass a string to it, it will write the string
-     * to the screen over time.
-     */
+    public Transform[] heroSpawn = new Transform[3];
+    public Transform[] monsterSpawn = new Transform[3];
+
     public WriteText ouputLog;
 
-    //TODO Create more prefabs below, to represent more classes/monsters that may be spawned
-    public GameObject[] heroPrefabs;
-    public GameObject[] monsterPrefabs;
+    public int currentPlayerIndex =0;
 
-    
-
-    //Basic SFX for game events
     public AudioClip hurt, atack;
-    
+
     private void Start()
     {
         //This will call the SpawnIn function when the game starts (currently does nothing)
@@ -36,82 +33,133 @@ public class BattleLogic : MonoBehaviour
         InvokeRepeating("Attack", 4, 4);
 
         //An example of how to write a string to the screen"
-        ouputLog.OutputText("Oh no, " + monsters.myName +  " approaches!");
+
+        ouputLog.OutputText("Oh no, " + monsters[0].myName + ", " + monsters[1].myName + " and a " + monsters[2].myName + " approache!");
     }
 
     void SpawnIn()
+        //choose 3 random heroes and monsters and spawn them into the spawnpoints
     {
-        //TODO Write your code to spawn in the prefabs, you will need to use arrays/lists and loops to accomplish this.
-        //Instantiate();
-
-
-        //spawn 1 hero
-        GameObject g = (GameObject)Instantiate(heroPrefabs[0], spawnPoints[0]);
-        heroes.Add( g.GetComponent<CharacterStats>());
-
-
-        //spawn more heros here
-
-
-        //-----
-
-
-
+        for (int h = 0; h < 3; h++)
+        {
+            GameObject g = Instantiate(heroPrefab[Random.Range(0, heroPrefab.Count)], heroSpawn[h]) as GameObject;
+            heroes.Add(g.GetComponent<CharacterStats>());
+        }
+        for (int m = 0; m < 3; m++)
+        {
+            GameObject g = Instantiate(monsterPrefab[Random.Range(0, monsterPrefab.Count)], monsterSpawn[m]) as GameObject;
+            monsters.Add(g.GetComponent<CharacterStats>());
+        }        
     }
-
+    public bool isMonster = false;
     void Attack()
     {
         //TODO Rewrite the code below to work for three heroes & three monsters (choosing one per side each round)
 
-        /* The following code serves as an example of combat, but it is far too simplistic and does not meet all
-         * the requirements, you will need to modify this heavily based on the system you want to implement.
-         */
-         /*
+        // The following code serves as an example of combat, but it is far too simplistic and does not meet all
+        // the requirements, you will need to modify this heavily based on the system you want to implement.
+
+
+        CharacterStats currentPlayer = null;
+        CharacterStats currentTarget = null;
+        isMonster = false;
+
+        if (currentPlayerIndex >= heroes.Count)
+        {
+            isMonster = true;
+        }
+
+        //who will fight?
+        if (isMonster)
+        {
+            currentPlayer = monsters[currentPlayerIndex -heroes.Count];
+            currentTarget = heroes[Random.Range(0, heroes.Count)];
+
+        }
+        else
+        {
+            currentPlayer = heroes[currentPlayerIndex];
+            currentTarget = monsters[Random.Range(0, monsters.Count)];
+        }
+
+
+        Debug.Log(currentPlayer.myName + ": " + currentPlayerIndex);
         int simpleRandomChance = Random.Range(0, 2);
-        string log = null;
+        string log = "";
 
         //Hero or monster hits based on a flat 50% chance
         if(simpleRandomChance == 0)
         {
             //actually modifies damage value
-            heroes.health -= monsters.damage;
+           // currentPlayer.health -= currentTarget.damage;
 
             //runs function controlling SFX and VFX
-            heroes.ShowDamage();
+           // currentPlayer.ShowDamage();
 
             //writes the result to the output string
-            log = "The " + monsters.myName + " hits the " + heroes.myName + " for " + monsters.damage + " damage! It has " + heroes.health + " HP remaining";
+            log = "The " + currentPlayer.myName + " missed the target";
         }
         else
         {
-            monsters.health -= heroes.damage;
+            currentTarget.health -= currentPlayer.damage;
 
-            monsters.ShowDamage();
+            currentTarget.ShowDamage();
 
-            log = "The " + heroes.myName + " hits the " + monsters.myName + " for " + heroes.damage + " damage! It has " + monsters.health + " HP remaining";
+            log = "The " + currentPlayer.myName + " hits the " + currentTarget.myName + " for " + currentPlayer.damage + " damage! It has " + currentTarget.health + " HP remaining";
         }
         
         //These end the game if either character's hp drops below 0
-        if (monsters.health <= 0)
+        if (currentTarget.health <= 0)
         {
-            Destroy(monsters.gameObject);
 
-            log = "Victory! The " + monsters.myName + " has been defeated!";
+            if (isMonster)
+            {
+                heroes.Remove(currentTarget);
+            }
+            else
+            {
+                monsters.Remove(currentTarget);
+            }
+
+
+            Destroy(currentTarget.gameObject);
+
+            log = "Victory! The " + currentTarget.myName + " has been defeated!";
+
+            //This must be called when combat finishes.
+            //CancelInvoke();
+        }
+
+        if (heroes.Count <= 0)
+        {
+            log = "Defeat! The heores have been defeated!";
+        }
+        else if (monsters.Count <= 0)
+        {
+            log = "Victory! The monsters have been defeated!";
+        }
+        /* == Replace with end logic
+        else if (currentTarget.health <= 0)
+        {
+            Destroy(currentTarget.gameObject);
+
+            log = "Defeat! The " + currentTarget.myName + " has been defeated!";
 
             //This must be called when combat finishes.
             CancelInvoke();
-        }
-        else if (heroes.health <= 0)
-        {
-            Destroy(heroes.gameObject);
-
-            log = "Defeat! The " + heroes.myName + " has been defeated!";
-
-            //This must be called when combat finishes.
-            CancelInvoke();
-        }
+        }*/
 
         //Writes the assigned string to the screen
-        ouputLog.OutputText(log);*/
+        if (log.Length != 0)
+        {
+
+            ouputLog.OutputText(log);
+        }
+        currentPlayerIndex++;
+
+        if (currentPlayerIndex >= heroes.Count + monsters.Count) 
+        {
+            currentPlayerIndex = 0;
+        }
     }
 }
