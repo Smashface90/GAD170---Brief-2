@@ -25,7 +25,7 @@ public class BattleLogic : MonoBehaviour
 
     private void Start()
     {
-        //This will call the SpawnIn function when the game starts (currently does nothing)
+        //This will call the SpawnIn function when the game starts
 
         SpawnIn();
 
@@ -124,10 +124,9 @@ public class BattleLogic : MonoBehaviour
 
             Destroy(currentTarget.gameObject);
 
-            log = "Victory! The " + currentTarget.myName + " has been defeated!";
+            log = "The " + currentTarget.myName + " has been defeated!";
 
             //This must be called when combat finishes.
-            //CancelInvoke();
         }
 
         if (heroes.Count <= 0)
@@ -138,18 +137,7 @@ public class BattleLogic : MonoBehaviour
         {
             log = "Victory! The monsters have been defeated!";
         }
-        /* == Replace with end logic
-        else if (currentTarget.health <= 0)
-        {
-            Destroy(currentTarget.gameObject);
 
-            log = "Defeat! The " + currentTarget.myName + " has been defeated!";
-
-            //This must be called when combat finishes.
-            CancelInvoke();
-        }*/
-
-        //Writes the assigned string to the screen
         if (log.Length != 0)
         {
 

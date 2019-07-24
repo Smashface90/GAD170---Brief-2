@@ -84,6 +84,11 @@ PrefabInstance:
       propertyPath: Str
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4587007153357169972, guid: b3fbf537a4792b64ba2a07f1b1108eae,
+        type: 3}
+      propertyPath: myName
+      value: Female Knight
+      objectReference: {fileID: 0}
     - target: {fileID: 494824127, guid: b3fbf537a4792b64ba2a07f1b1108eae, type: 3}
       propertyPath: m_audioClip
       value: 
